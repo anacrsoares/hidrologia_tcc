@@ -6,7 +6,7 @@ library(sf)
 library(dplyr)
 
 ## Read.me hydrobr library (optional)
-vignette(package = "hydrobr", topic = "intro_to_hydrobr")
+#vignette(package = "hydrobr", topic = "intro_to_hydrobr")
 
 ## Creating stations dictionary
 station_codes <- data.frame(x= c("croata","fazenda_boa_esperanca","moraujo", 
@@ -43,7 +43,7 @@ estacoes_flu <- data.frame(station_code = codes,
 ## Downloading data
 flu <- stationsData(inventoryResult = estacoes_flu, deleteNAstations = F)
 
-## Checking first Station data
+## Creating flu datasource
 for (x in 1:length(station_codes$x)){
-    assign(paste0("estacao_", station_codes$x[x]), flu[[x]])
+  write.csv(assign(paste0("estacao_", station_codes$x[x]), flu[[x]]), file = paste0('datasource/est_fluviometricas_ana/', station_codes$x[x], '.csv'), row.names = F) 
 }
